@@ -9,12 +9,14 @@ declare module "next-auth" {
       image?: string | null
       role: string
       isSubscribed: boolean
+      trustScore?: number
     }
   }
 
   interface User {
     role: string
     isSubscribed: boolean
+    trustScore?: number
   }
 }
 
@@ -22,5 +24,6 @@ declare module "next-auth/jwt" {
   interface JWT {
     role: string
     isSubscribed: boolean
+    trustScore?: number
   }
 }

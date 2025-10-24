@@ -44,6 +44,7 @@ export const authOptions: NextAuthOptions = {
           name: user.name,
           role: user.role,
           isSubscribed: user.isSubscribed,
+          trustScore: user.trustScore,
         }
       }
     }),
@@ -60,6 +61,7 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         token.role = user.role
         token.isSubscribed = user.isSubscribed
+        token.trustScore = user.trustScore
       }
       return token
     },
@@ -68,6 +70,7 @@ export const authOptions: NextAuthOptions = {
         session.user.id = token.sub!
         session.user.role = token.role as string
         session.user.isSubscribed = token.isSubscribed as boolean
+        session.user.trustScore = token.trustScore as number
       }
       return session
     }
