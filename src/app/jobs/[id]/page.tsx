@@ -49,7 +49,7 @@ interface QuoteFormData {
   comment: string
 }
 
-export default function JobDetailsPage({ params }: { params: { id: string } }) {
+export default function JobDetailsPage({ params }: { params: Promise<{ id: string }> }) {
   const { data: session, status } = useSession()
   const router = useRouter()
   const [job, setJob] = useState<Job | null>(null)
@@ -70,11 +70,12 @@ export default function JobDetailsPage({ params }: { params: { id: string } }) {
     if (session?.user?.id) {
       fetchJob()
     }
-  }, [session, params.id])
+  }, [session])
 
   const fetchJob = async () => {
     try {
-      const response = await fetch(`/api/jobs/${params.id}`)
+      const { id } = await params
+      const response = await fetch(`/api/jobs/${id}`)
       if (response.ok) {
         const data = await response.json()
         setJob(data)
@@ -88,6 +89,7 @@ export default function JobDetailsPage({ params }: { params: { id: string } }) {
       setIsLoading(false)
     }
   }
+
 
   const handleQuoteSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
