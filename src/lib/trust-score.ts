@@ -1,4 +1,18 @@
-import { User } from '@prisma/client'
+export interface User {
+  id: string
+  name?: string | null
+  email: string
+  role: string
+  isSubscribed: boolean
+  trustScore: number
+  profileCompletion: number
+  companyName?: string | null
+  tradeCategory?: string | null
+  description?: string | null
+  insuranceDoc?: string | null
+  qualifications?: string | null
+  emailVerified?: Date | null
+}
 
 export interface TrustScoreFields {
   name: boolean
