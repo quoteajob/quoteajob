@@ -1,4 +1,4 @@
-import { QuoteStatus } from '@prisma/client'
+export type QuoteStatus = 'LOWER' | 'ABOUT_RIGHT' | 'HIGHER'
 
 export function compareQuoteToAverage(quoteAmount: number, averageAmount: number): QuoteStatus {
   const difference = Math.abs(quoteAmount - averageAmount)
