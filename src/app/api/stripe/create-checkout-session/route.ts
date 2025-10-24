@@ -12,7 +12,10 @@ export async function POST(request: NextRequest) {
     }
 
     const user = await prisma.user.findUnique({
-      where: { id: session.user.id }
+      where: { id: session.user.id },
+      include: {
+        subscription: true
+      }
     })
 
     if (!user) {
